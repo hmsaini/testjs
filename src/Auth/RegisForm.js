@@ -60,7 +60,12 @@ const RegisForm = (props) => {
     const [number, setPassword] = useState("");
     const [formError, setFormError] = useState({});
     const [experType, setExperType] = useState('')
+    const [toggle,setToggle]=useState(false)
+    console.log('ex',experType)
+
+    
     const errors = {};
+    
     const handleNameChange = (e) => {
         setUsername(e.target.value);
     };
@@ -73,6 +78,7 @@ const RegisForm = (props) => {
     const handleExperTypeChange = (e) => {
         setExperType(e.target.value)
     }
+    
     const handleCancelButton = () => {
         setUsername("");
         setEmail("");
@@ -107,8 +113,8 @@ const RegisForm = (props) => {
                 username: username,
                 email: email,
                 number: number,
-                experience: experType
-
+                experience: experType,
+                
             }
             console.log(formdata)
             //axios
@@ -197,7 +203,8 @@ const RegisForm = (props) => {
                     />
                 </Section>
                 <br />
-
+                {experType==="experienced"? <ExperienceForm />:<div></div>}
+                
                 <Button type="submit">Register</Button>
                 <Button primary type="button" onClick={handleCancelButton}>
                     Cancel
