@@ -54,6 +54,16 @@ const Span = styled.span`
   color: #fa0000;
   margin-top: 4px;
 `;
+
+let formData = {
+    username: '',
+    email: '',
+    number: '',
+    experience: '',
+    company: '',
+    duration: ''
+};
+
 const RegisForm = (props) => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -109,14 +119,15 @@ const RegisForm = (props) => {
         runValidation();
         if (Object.keys(errors).length === 0) {
             setFormError({});
-            let formdata = {
+            let parentFormData = {
                 username: username,
                 email: email,
                 number: number,
-                experience: experType,
-                
+                experience: experType
             }
-            console.log(formdata)
+
+            let combinedData = {...formData, ...parentFormData};
+            console.log(combinedData)
             //axios
             //  .post("http://dct-user-auth.herokuapp.com/users/register", {
             //    username: username,
@@ -203,7 +214,7 @@ const RegisForm = (props) => {
                     />
                 </Section>
                 <br />
-                {experType==="experienced"? <ExperienceForm />:<div></div>}
+                {experType==="experienced"? <ExperienceForm parentCallback={formData} />:<div></div>}
                 
                 <Button type="submit">Register</Button>
                 <Button primary type="button" onClick={handleCancelButton}>

@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 
-const ExperienceForm=(props)=>{
+const ExperienceForm=(props)=> {
+    console.log(`Experience props value: ${JSON.stringify(props.parentCallback)}`)
     const [companyName,setCompanyName]=useState('')
     const [duration,setDuration]=useState('')
 
     const handleCompanyChange=(e)=>{
+        console.log(`company: ${e.target.value}`)
+        props.parentCallback['company'] = e.target.value
         setCompanyName(e.target.value)
     }
-    const handleDurationChange=(e)=>{
+    const handleDurationChange=(e)=> {
+        console.log(`Duration: ${e.target.value}`)
+        props.parentCallback['duration'] = e.target.value
         setDuration(e.target.value)
     }
 
